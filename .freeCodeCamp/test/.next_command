@@ -75,3 +75,7 @@ __vsc_original_prompt_command=${PROMPT_COMMAND:-}
 git remote add myfork https://github.com/Magopolis/learn-world-cup-database.git
 git remote -v
 git add .
+git commit -m "initial update mostly for extra practice"
+psql --username=freecodecamp --dbname=postgres
+git remote -v
+git add .
