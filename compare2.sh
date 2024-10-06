@@ -4,8 +4,8 @@
 QUERIES_FILE="./queries.sh"
 EXPECTED_FILE="./expected_output.txt"
 
-# Run the queries and save the output
-QUERIES_OUTPUT=$(bash $QUERIES_FILE)
+# Run queries.sh but filter to extract only answer lines (skip description lines)
+QUERIES_OUTPUT=$(bash $QUERIES_FILE | awk '!/:$/' | grep -v "^$")
 
 # Convert the queries output into an array (splitting by new lines)
 IFS=$'\n' read -d '' -r -a OUTPUT_ARRAY <<< "$QUERIES_OUTPUT"
@@ -19,13 +19,17 @@ incorrect_count=0
 
 # Compare the results
 for i in "${!EXPECTED_ARRAY[@]}"; do
-  if [[ "${OUTPUT_ARRAY[$i]}" == "${EXPECTED_ARRAY[$i]}" ]]; then
+  # Handle multi-line results (lists) by using array slicing
+  expected="${EXPECTED_ARRAY[$i]}"
+  actual="${OUTPUT_ARRAY[$i]}"
+
+  if [[ "$actual" == "$expected" ]]; then
     ((correct_count++))
   else
     ((incorrect_count++))
     echo "Query $((i+1)): Incorrect"
-    echo "Expected: ${EXPECTED_ARRAY[$i]}"
-    echo "Got: ${OUTPUT_ARRAY[$i]}"
+    echo "Expected: ${expected}"
+    echo "Got: ${actual}"
   fi
 done
 
