@@ -1,2 +1,11 @@
 node_modules
 .DS_Store
+.freeCodeCamp/
+debug_insert_data.sh
+compare.sh
+create_all.sh
+compare2.sh
+*.log
+*.tmp
+
+
