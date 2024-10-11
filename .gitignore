@@ -13,3 +13,4 @@ compare2.sh
 .freeCodeCamp/pg_hba.conf
 .freeCodeCamp/test/.cwd
 .freeCodeCamp/test/.next_command
+FETCH_HEAD
