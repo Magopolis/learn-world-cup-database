@@ -9,3 +9,7 @@ compare2.sh
 *.tmp
 
 
+.freeCodeCamp/.bashrc
+.freeCodeCamp/pg_hba.conf
+.freeCodeCamp/test/.cwd
+.freeCodeCamp/test/.next_command
